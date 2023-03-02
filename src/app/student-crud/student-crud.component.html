@@ -10,16 +10,18 @@
         >
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-            <form>
+            <form #f="ngForm"  >
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
                     <input
                       type="text"
                       id="firstName"
-                      class="form-control form-control-lg"
+                      class="form-control"
+
                       [ngModelOptions]="{ standalone: true }"
                       [(ngModel)]="firstName"
+
                     />
                     <label class="form-label" for="firstName">First Name</label>
                   </div>
@@ -30,9 +32,11 @@
                     <input
                       type="tel"
                       id="EmpId"
-                      class="form-control form-control-lg"
+                      class="form-control"
+
                       [(ngModel)]="empID"
                       [ngModelOptions]="{ standalone: true }"
+
                     />
                     <label class="form-label" for="EmpId">EmpId</label>
                   </div>
@@ -43,9 +47,11 @@
                     <input
                       type="tel"
                       id="phoneNumber"
-                      class="form-control form-control-lg"
+                      class="form-control"
+
                       [(ngModel)]="phoneNumberr"
                       [ngModelOptions]="{ standalone: true }"
+
                     />
                     <label class="form-label" for="phoneNumber"
                       >Phone Number</label
@@ -59,7 +65,11 @@
                     type="button"
                     value="Submit"
                     (click)="save()"
+                    [disabled]="!f.valid"
                   />
+                </div>
+                <div class="mt-4 pt-2">
+                  <button class="btn btn-danger" type="button" [disabled]="!f.valid" (click)="onCLear()">Clear</button>
                 </div>
               </div>
 

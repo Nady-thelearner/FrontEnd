@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-student-crud',
@@ -7,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./student-crud.component.css'],
 })
 export class StudentCrudComponent implements OnInit {
+  @ViewChild('f', { static: false }) slForm!: NgForm;
   studentArray: any[] = [];
 
   firstName: string = '';
@@ -42,6 +45,7 @@ export class StudentCrudComponent implements OnInit {
       .subscribe((res) => {
         console.log('User created successfully', res);
         this.getAllStudent();
+        this.onCLear();
       });
   }
 
@@ -76,6 +80,7 @@ export class StudentCrudComponent implements OnInit {
       .subscribe((result) => {
         console.log('Updated', result);
         this.getAllStudent();
+        this.onCLear();
       });
   }
 
@@ -85,5 +90,15 @@ export class StudentCrudComponent implements OnInit {
     } else {
       this.updateRecord();
     }
+  }
+
+  onCLear() {
+    console.log('clear fucntion called');
+    let form = this.slForm;
+    form.reset();
+    this.firstName = '';
+    this.empID = 0.0;
+    this.phoneNumberr= 0.0;
+
   }
 }
